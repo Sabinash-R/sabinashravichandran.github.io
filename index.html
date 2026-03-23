@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sabinash Ravichandran</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Arial", sans-serif;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      color: #fff;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #070707;
+      background-size: cover;
+      filter: blur(5px);
+      z-index: -1;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(60px);
+      transition: all 0.8s ease-out;
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    section {
+      padding: 60px 20px;
+      text-align: center;
+      max-width: 900px;
+      margin: 40px auto;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(6px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+    }
+
+    .hero {
+      text-align: center;
+      padding: 60px 20px;
+      color: #fff;
+    }
+
+    .hero-title {
+      font-size: 38px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      color: #ffffff;
+    }
+
+    .hero-video video {
+      width: 100%;
+      max-width: 800px;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+      margin-bottom: 20px;
+    }
+
+    .hero-content p {
+      font-size: 18px;
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.6;
+      color: #eee;
+    }
+
+    .about-item {
+      margin-bottom: 30px;
+    }
+
+    .about-title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .tick-circle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #b30000;
+      color: #fff;
+      font-size: 14px;
+      font-weight: bold;
+      border-radius: 50%;
+      width: 28px;
+      height: 28px;
+    }
+
+    .about-title h3 {
+      font-size: 22px;
+      font-weight: bold;
+      margin: 0;
+    }
+
+    .about-item p {
+      margin-left: 40px;
+      font-size: 16px;
+      line-height: 1.6;
+      color: #ddd;
+    }
+
+    .services h2 {
+      font-size: 28px;
+      margin-bottom: 30px;
+      color: #b30000;
+    }
+
+    .service-boxes {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .box {
+      width: 280px;
+      padding: 20px;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .box img {
+      width: 60%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+
+    .box:hover {
+      transform: scale(1.05);
+      box-shadow: 0px 10px 25px rgba(0,0,0,0.25);
+    }
+
+    .box h3 {
+      margin: 10px 0;
+      font-size: 20px;
+      color: #b30000;
+    }
+
+    .box p {
+      font-size: 14px;
+      color: #555;
+    }
+
+    footer {
+      color: white;
+      text-align: center;
+      padding: 15px;
+      margin-top: 20px;
+    }
+
+    @keyframes slideDown {
+      from { top: -50px; opacity: 0; }
+      to { top: 20px; opacity: 1; }
+    }
+  </style>
+</head>
+
+<body>
+  <section id="home" class="hero">
+    <h1 class="hero-title">Sabinash Ravichandran</h1>
+
+    <div class="hero-video">
+      <img src="Image/Sabinash.png" alt="Sabinash Ravichandran"
+           style="width:50%; border-radius:12px; box-shadow:0 6px 20px rgba(0,0,0,0.4); margin-bottom:20px; display:block; margin-left:auto; margin-right:auto;">
+    </div>         
+
+    <div class="hero-content">
+      <p>
+        Developer at SkyneTBee Artificial Intelligence Enterprise Pvt Ltd
+      </p>
+    </div>
+  </section>
+
+  <section id="services" class="reveal">
+    <h2>Application Development Experience</h2><br>
+    <h2>iOS Application Developer (Frontend & Backend)</h2><br>
+    <p>Technologies: Swift, Python, SQL</p><br>
+    <p>View on App Store</p><br>
+    <div class="service-boxes">
+      <a href="https://apps.apple.com/in/app/fly-path/id6759559643" target="_blank" style="text-decoration:none; color:inherit;">
+        <div class="box">
+          <img src="Image/flypath.png" alt="flypath logo">
+          <h3>Fly Path</h3>
+          <p>This app features a fully preloaded 3D globe that displays your live GPS position during flights. Users can manually enter airport IATA codes to visualize and track their flight route between origin and destination. Built specifically for domestic flights without infotainment systems.</p><br>  
+        </div>
+      </a>
+      <a href="https://apps.apple.com/in/app/snake-game-by-skynet/id6741356088" target="_blank" style="text-decoration:none; color:inherit;">
+        <div class="box">
+          <img src="Image/Snake.jpg" alt="Snake game">
+          <h3>Snake Game by Skynet</h3>
+          <p>My second app, Snake Game, was built using loops and arrays to manage the snake’s movement and growth. It marked a big step forward in my coding journey, where I began turning logic into interactive gameplay through structured programming concepts.</p><br>  
+        </div>
+      </a>
+      <a href="https://apps.apple.com/in/app/hand-circket/id6737731680" target="_blank" style="text-decoration:none; color:inherit;">
+        <div class="box">
+          <img src="Image/HandCricket.jpg" alt="HandCricket">
+          <h3>Hand Cricket</h3>
+          <p>My very first app, Hand Cricket, is now live on the App Store. I developed it entirely offline, relying solely on my knowledge of variables and if–else logic, without any external help or internet resources — a true reflection of my passion and self-learning in coding.</p><br>       
+        </div>
+      </a>
+    <p>Designed and developed end-to-end mobile applications, handling both frontend user interface implementation and backend logic integration.</p><br>
+    </div><br>
+  </section>
+
+  <section id="home" class="reveal">
+    <h2>Industry Exposure & Technical Engagements</h2><br>
+    <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+      <img src="Image/b1.JPG" alt="Industry Image 1"
+          style="width: 250px; height: 180px; object-fit: cover; border-radius: 12px; box-shadow: 0 6px 20px rgba(0,0,0,0.4);">
+      <img src="Image/b3.jpg" alt="Industry Image 2"
+          style="width: 250px; height: 180px; object-fit: cover; border-radius: 12px; box-shadow: 0 6px 20px rgba(0,0,0,0.4);">
+      <img src="Image/b2.JPG" alt="Industry Image 3"
+          style="width: 250px; height: 180px; object-fit: cover; border-radius: 12px; box-shadow: 0 6px 20px rgba(0,0,0,0.4);">
+    </div><br>
+    <p>Apple Developer Center – Bengaluru</p><br>
+    <p>Explored iOS ecosystem advancements,
+    Networked with developers,
+    Gained insights into Apple platform best practices</p><br>
+    <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+    <img src="Image/sai1.jpg" alt="Industry Image 1"
+          style="width: 250px; height: 180px; object-fit: cover; border-radius: 12px; box-shadow: 0 6px 20px rgba(0,0,0,0.4);">
+      <img src="Image/sai2.JPG" alt="Industry Image 2"
+          style="width: 250px; height: 180px; object-fit: cover; border-radius: 12px; box-shadow: 0 6px 20px rgba(0,0,0,0.4);"><br>
+    </div><br>
+    <p>AI Summit – Delhi</p><br>
+    <p>Attended AI-focused sessions,
+Learned about emerging AI trends,
+Engaged with industry experts</p><br>
+<div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+    <img src="Image/sl.jpg" alt="Industry Image 1"
+          style="width: 250px; height: 180px; object-fit: cover; border-radius: 12px; box-shadow: 0 6px 20px rgba(0,0,0,0.4);">
+      <img src="Image/grp.JPG" alt="Industry Image 2"
+          style="width: 250px; height: 180px; object-fit: cover; border-radius: 12px; box-shadow: 0 6px 20px rgba(0,0,0,0.4);">
+      <img src="Image/gbu.jpg" alt="Industry Image 2"
+          style="width: 250px; height: 180px; object-fit: cover; border-radius: 12px; box-shadow: 0 6px 20px rgba(0,0,0,0.4);"><br>
+    </div><br>
+    <p>NVIDIA Conference – Coimbatore</p><br>
+    <p>Attended sessions on GPU computing and AI acceleration,
+Explored advancements in deep learning and high-performance computing,
+Interacted with industry professionals and technical experts</p><br>
+  </section>
+  <section id="home" class="reveal">
+    <h2>Social Media Growth & Engagement Metrics</h2><br>
+    <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+      <img src="Image/reels1.png" alt="Industry Image 1"
+     style="width: 250px; height: auto; border-radius: 12px; box-shadow: 0 6px 20px rgba(0,0,0,0.4);">
+      <img src="Image/reels2.png" alt="Industry Image 1"
+     style="width: 250px; height: auto; border-radius: 12px; box-shadow: 0 6px 20px rgba(0,0,0,0.4);">
+      <img src="Image/reels3.png" alt="Industry Image 1"
+     style="width: 250px; height: auto; border-radius: 12px; box-shadow: 0 6px 20px rgba(0,0,0,0.4);">
+    </div><br>
+    <p>Achieved 1M+ views on a single reel</p><br>
+    <p>Generated 2M+ cumulative views across campaigns</p><br>
+    <p>Improved audience engagement through strategic content planning and Applied performance analytics to optimize reach</p><br>
+  </section>
+  <div style="display: flex; justify-content: center; margin-top: 10px; gap: 20px;">
+    <div style="display: flex; align-items: center; gap: 8px;">
+      <img src="Image/instaLOGO.jpg" style="width: 20pt; height: 20pt;">
+      <a href="https://www.instagram.com/sabinash._.ravichandran?igsh=N3cyb2xwcmJ5M2Fh&utm_source=qr" target="_blank" style="color: #cb3f3f; text-decoration: none; font-weight: bold;">sabinash._.ravichandran
+      </a>
+    </div>
+    <div style="display: flex; align-items: center; gap: 8px;">
+      <img src="Image/whatsapp2.png" style="width: 20pt; height: 20pt;">
+      <a href="https://wa.me/919894106889" target="_blank" style="color:#25D366; text-decoration: none; font-weight: bold;">
+        WhatsApp
+      </a>
+    </div>
+  </div>
+  <footer>
+    <p>Sabinash Ravichandran | All Rights Reserved</p>
+  </footer>
+
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+        } 
+      });
+    }, { threshold: 0.3 });
+
+    reveals.forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
