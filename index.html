@@ -3,318 +3,647 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sabinash Ravichandran</title>
+  <title>Sabinash Ravichandran — iOS Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@400;500&family=DM+Mono&display=swap" rel="stylesheet">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: "Arial", sans-serif;
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg:       #0a0c10;
+      --surface:  #111418;
+      --border:   rgba(255,255,255,0.07);
+      --accent:   #4a8fff;
+      --accent2:  #1a3a6e;
+      --white:    #f0f4ff;
+      --muted:    #8a94a6;
+      --card-bg:  #13171f;
+      --radius:   14px;
+      --radius-sm:8px;
     }
+
+    html { scroll-behavior: smooth; }
 
     body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      color: #fff;
+      background: var(--bg);
+      color: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
     }
 
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0;
-      left: 0;
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 40px;
+      background: rgba(10,12,16,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 18px;
+      color: var(--white);
+      text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a {
+      font-size: 13px; font-weight: 500; color: var(--muted);
+      text-decoration: none; letter-spacing: 0.3px;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--white); }
+
+    /* ── SECTIONS ── */
+    .section {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 80px 24px;
+    }
+    .section + .section { padding-top: 0; }
+
+    .section-label {
+      font-size: 11px; font-weight: 500;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    h2.section-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 32px; font-weight: 400;
+      color: var(--white);
+      margin-bottom: 32px;
+      line-height: 1.2;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      max-width: 860px; margin: 0 auto;
+      padding: 120px 24px 80px;
+    }
+    .hero-inner {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 200px;
+      gap: 40px;
+      align-items: center;
+    }
+    .hero-text {}
+    .hero-badge {
+      display: inline-block;
+      font-size: 12px; font-weight: 500;
+      color: var(--accent);
+      background: rgba(74,143,255,0.1);
+      border: 1px solid rgba(74,143,255,0.25);
+      padding: 5px 14px; border-radius: 99px;
+      margin-bottom: 28px;
+    }
+    .hero h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(36px, 6vw, 64px);
+      font-weight: 400; line-height: 1.05;
+      color: var(--white);
+      margin-bottom: 24px;
+    }
+    .hero h1 em { font-style: italic; color: var(--accent); }
+    .hero-desc {
+      font-size: 16px; color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 32px;
+    }
+    .hero-photo-wrap {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding-top: 12px;
+    }
+    .hero-photo {
+      width: 180px;
+      height: 200px;
+      border-radius: 16px;
+      object-fit: cover;
+      object-position: center top;
+      border: 1px solid var(--border);
+      display: block;
+    }
+    .hero-contacts {
+      display: flex; flex-wrap: wrap; gap: 12px;
+      margin-bottom: 40px;
+    }
+    .hero-contacts a {
+      font-size: 13px; color: var(--muted);
+      text-decoration: none;
+      display: flex; align-items: center; gap: 6px;
+      transition: color 0.2s;
+    }
+    .hero-contacts a:hover { color: var(--white); }
+    .hero-contacts svg { width: 14px; height: 14px; opacity: 0.5; }
+    @media (max-width: 600px) {
+      .hero-inner {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+      .hero-photo-wrap { order: -1; justify-content: flex-start; }
+      .hero-photo { width: 100px; height: 114px; border-radius: 12px; }
+    }
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 0;
+    }
+
+    /* ── APPS LIST ── */
+    .apps-list {
+      display: flex; flex-direction: column; gap: 24px;
+    }
+    .app-row {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      text-decoration: none; color: inherit;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      transition: border-color 0.25s;
+    }
+    .app-row:hover { border-color: rgba(74,143,255,0.35); }
+    .app-row-info {
+      padding: 32px 28px;
+      display: flex; flex-direction: column; justify-content: center; gap: 12px;
+    }
+    .app-row-header {
+      display: flex; align-items: center; gap: 14px;
+    }
+    .app-icon {
+      width: 52px; height: 52px;
+      border-radius: 12px;
+      object-fit: cover;
+      flex-shrink: 0;
+      border: 1px solid var(--border);
+    }
+    .app-name {
+      font-size: 20px; font-weight: 500;
+      color: var(--white);
+    }
+    .app-desc {
+      font-size: 13px; color: var(--muted);
+      line-height: 1.6;
+    }
+    .app-link {
+      font-size: 12px; font-weight: 500;
+      color: var(--accent);
+      display: inline-flex; align-items: center; gap: 5px;
+      margin-top: 4px;
+    }
+    .app-row-screenshots {
+      background: rgba(0,0,0,0.25);
+      border-left: 1px solid var(--border);
+      padding: 16px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      overflow: hidden;
+    }
+    .app-screenshot-wrap {
+      flex: 1;
+      min-width: 0;
+      max-width: 110px;
+      aspect-ratio: 9 / 19.5;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: #000;
+      flex-shrink: 0;
+    }
+    .app-screenshot {
       width: 100%;
       height: 100%;
-      background: #070707;
-      background-size: cover;
-      filter: blur(5px);
-      z-index: -1;
-    }
-
-    .reveal {
-      opacity: 0;
-      transform: translateY(60px);
-      transition: all 0.8s ease-out;
-    }
-
-    .reveal.active {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    section {
-      padding: 60px 20px;
-      text-align: center;
-      max-width: 900px;
-      margin: 40px auto;
-      border-radius: 16px;
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(6px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
-    }
-
-    .hero {
-      text-align: center;
-      padding: 60px 20px;
-      color: #fff;
-    }
-
-    .hero-title {
-      font-size: 38px;
-      font-weight: bold;
-      margin-bottom: 20px;
-      color: #ffffff;
-    }
-
-    .hero-video video {
-      width: 100%;
-      max-width: 800px;
-      border-radius: 12px;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.4);
-      margin-bottom: 20px;
-    }
-
-    .hero-content p {
-      font-size: 18px;
-      max-width: 700px;
-      margin: 0 auto;
-      line-height: 1.6;
-      color: #eee;
-    }
-
-    .about-item {
-      margin-bottom: 30px;
-    }
-
-    .about-title {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .tick-circle {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      background-color: #b30000;
-      color: #fff;
-      font-size: 14px;
-      font-weight: bold;
-      border-radius: 50%;
-      width: 28px;
-      height: 28px;
-    }
-
-    .about-title h3 {
-      font-size: 22px;
-      font-weight: bold;
-      margin: 0;
-    }
-
-    .about-item p {
-      margin-left: 40px;
-      font-size: 16px;
-      line-height: 1.6;
-      color: #ddd;
-    }
-
-    .services h2 {
-      font-size: 28px;
-      margin-bottom: 30px;
-      color: #b30000;
-    }
-
-    .service-boxes {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-
-    .box {
-      width: 280px;
-      padding: 20px;
-      background: #fff;
-      border-radius: 10px;
-      box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .box img {
-      width: 80%;
-      height: 180px;
       object-fit: cover;
-      border-radius: 10px;
-      margin-bottom: 15px;
+      object-position: top center;
+      display: block;
+    }
+    @media (max-width: 680px) {
+      .app-row { grid-template-columns: 1fr; }
+      .app-row-screenshots {
+        border-left: none;
+        border-top: 1px solid var(--border);
+        padding: 14px 12px;
+      }
+      .app-screenshot-wrap { max-width: 90px; }
     }
 
-    .box:hover {
-      transform: scale(1.05);
-      box-shadow: 0px 10px 25px rgba(0,0,0,0.25);
+    /* ── EXPOSURE ── */
+    .exposure-grid {
+      display: flex; flex-direction: column; gap: 48px;
+    }
+    .exposure-item {}
+    .exposure-label {
+      font-size: 12px; font-weight: 500;
+      color: var(--accent); letter-spacing: 0.5px;
+      margin-bottom: 8px;
+    }
+    .exposure-title {
+      font-size: 20px; font-weight: 500;
+      color: var(--white); margin-bottom: 10px;
+    }
+    .exposure-desc {
+      font-size: 14px; color: var(--muted);
+      margin-bottom: 16px; line-height: 1.6;
+    }
+    .photo-row {
+      display: grid;
+      gap: 10px;
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .photo-row.two-col { grid-template-columns: repeat(2, 1fr); }
+    .photo-row-wrap {
+      aspect-ratio: 4 / 3;
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: #000;
+    }
+    .photo-row-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
 
-    .box h3 {
-      margin: 10px 0;
-      font-size: 20px;
-      color: #b30000;
+    /* ── METRICS ── */
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 12px;
+      margin-bottom: 24px;
     }
-
-    .box p {
-      font-size: 14px;
-      color: #555;
-    }
-
-    footer {
-      color: white;
+    .metric-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
       text-align: center;
-      padding: 15px;
-      margin-top: 20px;
+    }
+    .metric-num {
+      font-family: 'DM Serif Display', serif;
+      font-size: 32px; color: var(--accent);
+      margin-bottom: 4px;
+    }
+    .metric-label {
+      font-size: 12px; color: var(--muted);
+    }
+    .reels-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+    .reel-wrap {
+        aspect-ratio: 9 / 16;
+        border-radius: var(--radius-sm);
+        overflow: hidden;
+        border: 1px solid var(--border);
+        background: #000;
+    }
+    .reel-wrap img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        object-position: center center;
+        display: block;
     }
 
-    @keyframes slideDown {
-      from { top: -50px; opacity: 0; }
-      to { top: 20px; opacity: 1; }
+    /* ── EDUCATION & WORK ── */
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    @media (max-width: 600px) { .info-grid { grid-template-columns: 1fr; } }
+
+    .info-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+    }
+    .info-card-label {
+      font-size: 10px; font-weight: 500;
+      letter-spacing: 1.8px; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 14px;
+      display: block;
+    }
+    .info-card-title {
+      font-size: 17px; font-weight: 500;
+      color: var(--white); margin-bottom: 6px;
+      line-height: 1.3;
+    }
+    .info-card-sub {
+      font-size: 13px; color: var(--muted);
+      margin-bottom: 4px;
+    }
+    .info-card-meta {
+      font-size: 12px; color: rgba(138,148,166,0.6);
+      margin-top: 10px;
+    }
+    .status-pill {
+      display: inline-block;
+      font-size: 11px; font-weight: 500;
+      padding: 3px 10px; border-radius: 99px;
+      background: rgba(74,143,255,0.12);
+      color: var(--accent);
+      border: 1px solid rgba(74,143,255,0.2);
+      margin-top: 12px;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      text-align: center;
+      padding: 32px 24px;
+      font-size: 13px; color: var(--muted);
+    }
+    footer a { color: var(--muted); text-decoration: none; }
+    footer a:hover { color: var(--white); }
+    .footer-links { display: flex; justify-content: center; gap: 24px; margin-bottom: 16px; }
+
+    /* ── REVEAL ── */
+    .reveal {
+      opacity: 0; transform: translateY(32px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 600px) {
+      nav { padding: 14px 20px; }
+      .nav-links { gap: 20px; }
+      .hero { padding: 100px 20px 60px; }
+      .hero-photo { width: 72px; height: 72px; }
     }
   </style>
 </head>
-
 <body>
-  <section id="home" class="hero">
-    <h1 class="hero-title">Sabinash Ravichandran</h1>
 
-    <div class="hero-video">
-      <img src="Image/Sabinash.png" alt="Sabinash Ravichandran"
-           style="width:50%; border-radius:12px; box-shadow:0 6px 20px rgba(0,0,0,0.4); margin-bottom:20px; display:block; margin-left:auto; margin-right:auto;">
-    </div>         
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#home">SR</a>
+  <ul class="nav-links">
+    <li><a href="#apps">Apps</a></li>
+    <li><a href="#exposure">Experience</a></li>
+    <li><a href="#metrics">Reach</a></li>
+    <li><a href="#about">About</a></li>
+  </ul>
+</nav>
 
-    <div class="hero-content">
-      <p>
-        Developer at SkyneTBee Artificial Intelligence Enterprise Pvt Ltd
+<!-- HERO -->
+<div id="home">
+  <div class="hero">
+    <div class="hero-inner">
+      <div class="hero-text">
+      <span class="hero-badge">iOS Developer · Swift</span>
+      <h1>Sabinash<br><em>Ravichandran</em></h1>
+      <p class="hero-desc">
+        Developer at SkyneTBee Artificial Intelligence Enterprise Pvt Ltd —
+        building and publishing Swift applications, configuring developer environments,
+        and supporting enterprise software systems.
       </p>
-    </div>
-  </section>
-
-  <section id="services" class="reveal">
-    <h2>Application Development Experience</h2><br>
-    <h2>iOS Application Developer (Frontend & Backend)</h2><br>
-    <p>Technologies: Swift, Python, SQL</p><br>
-    <p>View on App Store</p><br>
-    <div class="service-boxes">
-      <a href="https://apps.apple.com/in/app/project-pilot-by-skynet/id6763674130" target="_blank" style="text-decoration:none; color:inherit;">
-        <div class="box">
-          <img src="Image/projectpilot.jpg" alt="projectpilot logo">
-          <h3>Project Pilot</h3>
-          <p>Product-level application for assigning, tracking, and reviewing software projects with real-time progress monitoring and performance evaluation.
-Manage structured data with professional database tables for better organization.
-Works seamlessly offline with automatic synchronization when back online.</p><br>  
-        </div>
-      </a>
-      <a href="https://apps.apple.com/in/app/fly-path/id6759559643" target="_blank" style="text-decoration:none; color:inherit;">
-        <div class="box">
-          <img src="Image/flypath.png" alt="flypath logo">
-          <h3>Fly Path</h3>
-          <p>This app features a fully preloaded 3D globe that displays your live GPS position during flights. Users can manually enter airport IATA codes to visualize and track their flight route between origin and destination. Built specifically for domestic flights without infotainment systems.</p><br>  
-        </div>
-      </a>
-      <a href="https://apps.apple.com/in/app/snake-game-by-skynet/id6741356088" target="_blank" style="text-decoration:none; color:inherit;">
-        <div class="box">
-          <img src="Image/Snake.jpg" alt="Snake game">
-          <h3>Snake Game by Skynet</h3>
-          <p>My second app, Snake Game, was built using loops and arrays to manage the snake’s movement and growth. It marked a big step forward in my coding journey, where I began turning logic into interactive gameplay through structured programming concepts.</p><br>  
-        </div>
-      </a>
-      <a href="https://apps.apple.com/in/app/hand-circket/id6737731680" target="_blank" style="text-decoration:none; color:inherit;">
-        <div class="box">
-          <img src="Image/HandCricket.jpg" alt="HandCricket">
-          <h3>Hand Cricket</h3>
-          <p>My very first app, Hand Cricket, is now live on the App Store. I developed it entirely offline, relying solely on my knowledge of variables and if–else logic, without any external help or internet resources — a true reflection of my passion and self-learning in coding.</p><br>       
-        </div>
-      </a>
-    <p>Designed and developed end-to-end mobile applications, handling both frontend user interface implementation and backend logic integration.</p><br>
-    </div><br>
-  </section>
-
-  <section id="home" class="reveal">
-    <h2>Industry Exposure & Technical Engagements</h2><br>
-    <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
-      <img src="Image/b1.JPG" alt="Industry Image 1"
-          style="width: 250px; height: 180px; object-fit: cover; border-radius: 12px; box-shadow: 0 6px 20px rgba(0,0,0,0.4);">
-      <img src="Image/b3.jpg" alt="Industry Image 2"
-          style="width: 250px; height: 180px; object-fit: cover; border-radius: 12px; box-shadow: 0 6px 20px rgba(0,0,0,0.4);">
-      <img src="Image/b2.JPG" alt="Industry Image 3"
-          style="width: 250px; height: 180px; object-fit: cover; border-radius: 12px; box-shadow: 0 6px 20px rgba(0,0,0,0.4);">
-    </div><br>
-    <p>Apple Developer Center – Bengaluru</p><br>
-    <p>Explored iOS ecosystem advancements,
-    Networked with developers,
-    Gained insights into Apple platform best practices</p><br>
-    <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
-    <img src="Image/sai1.jpg" alt="Industry Image 1"
-          style="width: 250px; height: 180px; object-fit: cover; border-radius: 12px; box-shadow: 0 6px 20px rgba(0,0,0,0.4);">
-      <img src="Image/sai2.JPG" alt="Industry Image 2"
-          style="width: 250px; height: 180px; object-fit: cover; border-radius: 12px; box-shadow: 0 6px 20px rgba(0,0,0,0.4);"><br>
-    </div><br>
-    <p>AI Summit – Delhi</p><br>
-    <p>Attended AI-focused sessions,
-Learned about emerging AI trends,
-Engaged with industry experts</p><br>
-<div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
-    <img src="Image/sl.jpg" alt="Industry Image 1"
-          style="width: 250px; height: 180px; object-fit: cover; border-radius: 12px; box-shadow: 0 6px 20px rgba(0,0,0,0.4);">
-      <img src="Image/grp.JPG" alt="Industry Image 2"
-          style="width: 250px; height: 180px; object-fit: cover; border-radius: 12px; box-shadow: 0 6px 20px rgba(0,0,0,0.4);">
-      <img src="Image/gbu.jpg" alt="Industry Image 2"
-          style="width: 250px; height: 180px; object-fit: cover; border-radius: 12px; box-shadow: 0 6px 20px rgba(0,0,0,0.4);"><br>
-    </div><br>
-    <p>NVIDIA Conference – Coimbatore</p><br>
-    <p>Attended sessions on GPU computing and AI acceleration,
-Explored advancements in deep learning and high-performance computing,
-Interacted with industry professionals and technical experts</p><br>
-  </section>
-  <section id="home" class="reveal">
-    <h2>Social Media Growth & Engagement Metrics</h2><br>
-    <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
-      <img src="Image/reels1.png" alt="Industry Image 1"
-     style="width: 250px; height: auto; border-radius: 12px; box-shadow: 0 6px 20px rgba(0,0,0,0.4);">
-      <img src="Image/reels2.png" alt="Industry Image 1"
-     style="width: 250px; height: auto; border-radius: 12px; box-shadow: 0 6px 20px rgba(0,0,0,0.4);">
-      <img src="Image/reels3.jpg" alt="Industry Image 1"
-     style="width: 250px; height: auto; border-radius: 12px; box-shadow: 0 6px 20px rgba(0,0,0,0.4);">
-    </div><br>
-    <p>Achieved 1M+ views on a single reel</p><br>
-    <p>Generated 2M+ cumulative views across campaigns</p><br>
-    <p>Improved audience engagement through strategic content planning and Applied performance analytics to optimize reach</p><br>
-  </section>
-  <div style="display: flex; justify-content: center; margin-top: 10px; gap: 20px;">
-    <div style="display: flex; align-items: center; gap: 8px;">
-      <img src="Image/instaLOGO.jpg" style="width: 20pt; height: 20pt;">
-      <a href="https://www.instagram.com/sabinash._.ravichandran?igsh=N3cyb2xwcmJ5M2Fh&utm_source=qr" target="_blank" style="color: #cb3f3f; text-decoration: none; font-weight: bold;">sabinash._.ravichandran
-      </a>
-    </div>
-    <div style="display: flex; align-items: center; gap: 8px;">
-      <img src="Image/whatsapp2.png" style="width: 20pt; height: 20pt;">
-      <a href="https://wa.me/919894106889" target="_blank" style="color:#25D366; text-decoration: none; font-weight: bold;">
-        WhatsApp
-      </a>
+      <div class="hero-contacts">
+        <a href="tel:+919894106889">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8 19.79 19.79 0 01.22 1.18 2 2 0 012.18 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.72 6.72l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          +91 98941 06889
+        </a>
+        <a href="mailto:skynetsabinashr@gmail.com">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          skynetsabinashr@gmail.com
+        </a>
+        <a href="https://www.linkedin.com/in/Sabinash" target="_blank">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+          Sabinash Ravichandran
+        </a>
+        <a href="https://www.instagram.com/sabinash._.ravichandran" target="_blank">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          sabinash._.ravichandran
+        </a>
+        <a href="https://wa.me/919894106889" target="_blank">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          WhatsApp
+        </a>
+      </div>
+      </div><!-- end .hero-text -->
+      <div class="hero-photo-wrap">
+        <img src="Image/Sabinash.png" alt="Sabinash Ravichandran" class="hero-photo">
+      </div>
     </div>
   </div>
-  <footer>
-    <p>Sabinash Ravichandran | All Rights Reserved</p>
-  </footer>
+</div>
 
-  <script>
-    const reveals = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('active');
-        } 
-      });
-    }, { threshold: 0.3 });
+<hr class="divider">
 
-    reveals.forEach(el => observer.observe(el));
-  </script>
+<!-- APPS -->
+<div id="apps" class="section reveal">
+  <span class="section-label">App Store · 4 Published Apps</span>
+  <h2 class="section-title">iOS Application Development</h2>
+  <p style="color:var(--muted);font-size:14px;margin-bottom:8px;">iOS Application Developer (Frontend & Backend) · Technologies: Swift, Python, SQL</p>
+  <p style="color:var(--muted);font-size:13px;margin-bottom:32px;">Designed and developed end-to-end mobile applications, handling both frontend user interface implementation and backend logic integration.</p>
+
+  <div class="apps-list">
+
+    <!-- Project Pilot -->
+    <a class="app-row" href="https://apps.apple.com/in/app/project-pilot-by-skynet/id6763674130" target="_blank">
+      <div class="app-row-info">
+        <div class="app-row-header">
+          <img class="app-icon" src="Image/projectpilot.jpg" alt="Project Pilot">
+          <div class="app-name">Project Pilot</div>
+        </div>
+        <div class="app-desc">Product-level application for assigning, tracking, and reviewing software projects with real-time progress monitoring and performance evaluation. Works seamlessly offline with automatic synchronisation when back online.</div>
+        <span class="app-link">View on App Store ↗</span>
+      </div>
+      <div class="app-row-screenshots">
+        <div class="app-screenshot-wrap"><img class="app-screenshot" src="Image/p1.png" alt="Project Pilot screenshot 1"></div>
+        <div class="app-screenshot-wrap"><img class="app-screenshot" src="Image/p2.png" alt="Project Pilot screenshot 2"></div>
+        <div class="app-screenshot-wrap"><img class="app-screenshot" src="Image/p3.jpg" alt="Project Pilot screenshot 3"></div>
+      </div>
+    </a>
+
+    <!-- Fly Path -->
+    <a class="app-row" href="https://apps.apple.com/in/app/fly-path/id6759559643" target="_blank">
+      <div class="app-row-info">
+        <div class="app-row-header">
+          <img class="app-icon" src="Image/flypath.png" alt="Fly Path">
+          <div class="app-name">Fly Path</div>
+        </div>
+        <div class="app-desc">Features a fully preloaded 3D globe displaying live GPS position during flights. Users enter airport IATA codes to visualise and track flight routes. Built for domestic flights without infotainment systems.</div>
+        <span class="app-link">View on App Store ↗</span>
+      </div>
+      <div class="app-row-screenshots">
+        <div class="app-screenshot-wrap"><img class="app-screenshot" src="Image/f1.png" alt="Fly Path screenshot 1"></div>
+        <div class="app-screenshot-wrap"><img class="app-screenshot" src="Image/f2.png" alt="Fly Path screenshot 2"></div>
+        <div class="app-screenshot-wrap"><img class="app-screenshot" src="Image/f3.png" alt="Fly Path screenshot 3"></div>
+      </div>
+    </a>
+
+    <!-- Snake Game -->
+    <a class="app-row" href="https://apps.apple.com/in/app/snake-game-by-skynet/id6741356088" target="_blank">
+      <div class="app-row-info">
+        <div class="app-row-header">
+          <img class="app-icon" src="Image/Snake.jpg" alt="Snake Game">
+          <div class="app-name">Snake Game</div>
+        </div>
+        <div class="app-desc">Built using loops and arrays to manage movement and growth. A milestone in turning programming logic into interactive gameplay through structured concepts.</div>
+        <span class="app-link">View on App Store ↗</span>
+      </div>
+      <div class="app-row-screenshots">
+        <div class="app-screenshot-wrap"><img class="app-screenshot" src="Image/s1.jpg" alt="Snake Game screenshot 1"></div>
+        <div class="app-screenshot-wrap"><img class="app-screenshot" src="Image/s2.jpg" alt="Snake Game screenshot 2"></div>
+        <div class="app-screenshot-wrap"><img class="app-screenshot" src="Image/s3.jpg" alt="Snake Game screenshot 3"></div>
+      </div>
+    </a>
+
+    <!-- Hand Cricket -->
+    <a class="app-row" href="https://apps.apple.com/in/app/hand-circket/id6737731680" target="_blank">
+      <div class="app-row-info">
+        <div class="app-row-header">
+          <img class="app-icon" src="Image/HandCricket.jpg" alt="Hand Cricket">
+          <div class="app-name">Hand Cricket</div>
+        </div>
+        <div class="app-desc">First published app — developed entirely offline using variables and if–else logic, without any external help. A true reflection of self-learning and passion for coding.</div>
+        <span class="app-link">View on App Store ↗</span>
+      </div>
+      <div class="app-row-screenshots">
+        <div class="app-screenshot-wrap"><img class="app-screenshot" src="Image/h1.jpg" alt="Hand Cricket screenshot 1"></div>
+        <div class="app-screenshot-wrap"><img class="app-screenshot" src="Image/h2.jpg" alt="Hand Cricket screenshot 2"></div>
+        <div class="app-screenshot-wrap"><img class="app-screenshot" src="Image/h3.jpg" alt="Hand Cricket screenshot 3"></div>
+      </div>
+    </a>
+
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- INDUSTRY EXPOSURE -->
+<div id="exposure" class="section reveal">
+  <span class="section-label">Industry Exposure</span>
+  <h2 class="section-title">Technical Engagements</h2>
+
+  <div class="exposure-grid">
+    <div class="exposure-item">
+      <div class="exposure-label">Bengaluru</div>
+      <div class="exposure-title">Apple Developer Center</div>
+      <div class="exposure-desc">Explored iOS ecosystem advancements · Networked with developers · Gained insights into Apple platform best practices</div>
+      <div class="photo-row">
+        <div class="photo-row-wrap"><img src="Image/b1.JPG" alt="Apple Developer Center"></div>
+        <div class="photo-row-wrap"><img src="Image/b3.jpg" alt="Apple Developer Center"></div>
+        <div class="photo-row-wrap"><img src="Image/b2.JPG" alt="Apple Developer Center"></div>
+      </div>
+    </div>
+
+    <div class="exposure-item">
+      <div class="exposure-label">Delhi</div>
+      <div class="exposure-title">AI Summit</div>
+      <div class="exposure-desc">Attended AI-focused sessions · Learned about emerging AI trends · Engaged with industry experts</div>
+      <div class="photo-row two-col">
+        <div class="photo-row-wrap"><img src="Image/sai1.jpg" alt="AI Summit Delhi"></div>
+        <div class="photo-row-wrap"><img src="Image/sai2.JPG" alt="AI Summit Delhi"></div>
+      </div>
+    </div>
+
+    <div class="exposure-item">
+      <div class="exposure-label">Coimbatore</div>
+      <div class="exposure-title">NVIDIA Conference</div>
+      <div class="exposure-desc">Attended sessions on GPU computing and AI acceleration · Explored deep learning advancements · Interacted with industry professionals</div>
+      <div class="photo-row">
+        <div class="photo-row-wrap"><img src="Image/sl.jpg" alt="NVIDIA Conference"></div>
+        <div class="photo-row-wrap"><img src="Image/grp.JPG" alt="NVIDIA Conference"></div>
+        <div class="photo-row-wrap"><img src="Image/gbu.jpg" alt="NVIDIA Conference"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- SOCIAL METRICS -->
+<div id="metrics" class="section reveal">
+  <span class="section-label">Social Media</span>
+  <h2 class="section-title">Growth & Engagement</h2>
+
+  <div class="metrics-grid">
+    <div class="metric-card">
+      <div class="metric-num">1M+</div>
+      <div class="metric-label">Views on a single reel</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-num">3M+</div>
+      <div class="metric-label">Cumulative views across campaigns</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-num">↑</div>
+      <div class="metric-label">Strategic content planning & performance analytics</div>
+    </div>
+  </div>
+
+  <div class="reels-row">
+    <div class="reel-wrap"><img src="Image/reels1.png" alt="Reel 1"></div>
+    <div class="reel-wrap"><img src="Image/reels2.png" alt="Reel 2"></div>
+    <div class="reel-wrap"><img src="Image/reels3.jpg" alt="Reel 3"></div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- EDUCATION & WORK -->
+<div id="about" class="section reveal">
+  <span class="section-label">Background</span>
+  <h2 class="section-title">Education & Work Experience</h2>
+
+  <div class="info-grid">
+    <div class="info-card">
+      <span class="info-card-label">Education</span>
+      <div class="info-card-title">B.Sc Artificial Intelligence &amp; Data Science</div>
+      <div class="info-card-sub">Bharathiar University</div>
+      <div class="info-card-meta">2024 – 2027 · 2nd Year</div>
+    </div>
+
+    <div class="info-card">
+      <span class="info-card-label">Work Experience</span>
+      <div class="info-card-title">iOS Developer</div>
+      <div class="info-card-sub">SkyneTBee Artificial Intelligence Enterprise Pvt Ltd</div>
+      <div class="info-card-meta">2024 – Present · Part-time</div>
+      <span class="status-pill">Currently Working</span>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-links">
+    <a href="mailto:skynetsabinashr@gmail.com">Email</a>
+    <a href="https://www.linkedin.com/in/Sabinash" target="_blank">LinkedIn</a>
+    <a href="https://www.instagram.com/sabinash._.ravichandran" target="_blank">Instagram</a>
+    <a href="https://wa.me/919894106889" target="_blank">WhatsApp</a>
+  </div>
+  <p>Sabinash Ravichandran · All Rights Reserved</p>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('active');
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+
 </body>
 </html>
